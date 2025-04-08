@@ -22,6 +22,19 @@ public class Arrays {
         }
         return -1;        
     }
+
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int profit = 0;
+        int minPrice = prices[0];
+
+        for(int i = 1; i < n; i++) {
+          profit = Math.max(profit, prices[i] - minPrice); 
+          minPrice = Math.min(minPrice, prices[i]);
+        }
+        
+        return profit;
+    }
     
     public void mergeSortedArrays(int[] nums1, int m, int[] nums2, int n) {
         int leftIndex = m - 1;
@@ -76,5 +89,19 @@ public class Arrays {
         }
 
         return k;
+    }
+
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for(int i=0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if(map.containsKey(complement))
+            {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        return null;
     }
 }
